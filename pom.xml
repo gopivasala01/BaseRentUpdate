@@ -5,11 +5,12 @@
   <version>0.0.1-SNAPSHOT</version>
   <name>BaseRentUpdate</name>
   <description>BaseRentUpdate</description>
-<dependencies>
+ 
+  <dependencies>
   <dependency>
 		    <groupId>io.github.bonigarcia</groupId>
 		    <artifactId>webdrivermanager</artifactId>
-		    <version>5.2.3</version>
+		    <version>5.4.1</version>
 	</dependency>
 	<dependency>
 		    <groupId>org.seleniumhq.webdriver</groupId>
@@ -22,32 +23,11 @@
 		    <artifactId>selenium-java</artifactId>
 		    <version>4.4.0</version>
 		</dependency>
-		<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi</artifactId>
-    <version>4.1.0</version>
-    </dependency>
-   <dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-ooxml</artifactId>
-    <version>4.1.0</version>
-</dependency>
-<dependency>
-<groupId>javax.mail</groupId>
-<artifactId>mail</artifactId>
-<version>1.4</version>
-</dependency>
-<dependency>
-    <groupId>org.apache.xmlbeans</groupId>
-    <artifactId>xmlbeans</artifactId>
-    <version>3.1.0</version>
-</dependency>
-
-<dependency>
-    <groupId>org.apache.poi</groupId>
-    <artifactId>poi-scratchpad</artifactId>
-    <version>4.1.0</version>
-</dependency>
+			<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.2.2</version>
+		</dependency>
 		
    <dependency>
     <groupId>com.google.guava</groupId>
@@ -121,5 +101,9 @@ implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransfor
 
   </plugins>
   </build>
+
+  
+  
+
 </project>
   
