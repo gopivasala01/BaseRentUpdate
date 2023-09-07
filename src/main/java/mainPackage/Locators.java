@@ -23,6 +23,7 @@ public class Locators
     public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
+    public static By BaseRentFieldinPW = By.xpath("//input[@name='entity.baseRentAsString']");
     public static By utilityConnectionRequest = By.xpath("//*[text()='Utility Connection Request']/following::Select[1]");
     public static By lockBoxCode = By.xpath("//*[text()='Lockbox Code']/following::input[1]");
     public static By filter_Other = By.xpath("//*[text()='Filter - Other']/following::input[1]");

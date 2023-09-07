@@ -32,6 +32,7 @@ public class RunnerClass
 	public static String[][] completedLeasesList;
 	public static String portfolioType = "";
 	public static String baseRentAmount ="";
+	public static String baseRentFromPW ="";
 	public static String previousRecordCompany;
 	
 	public static void main(String args[])
@@ -60,6 +61,7 @@ public class RunnerClass
 					autoChargeDescription = new ArrayList();
 					portfolioType = "";
 					baseRentAmount ="";
+					baseRentFromPW ="";
 					failedReason ="";
 					System.out.println("Lease --"+leaseEntityID+"-- "+(i+1));
 					if(PropertyWare.selectLease()==false)
@@ -72,7 +74,7 @@ public class RunnerClass
 					previousRecordCompany= company;
 					if(UpdateBaseRent.getBaseRentAmount()==false)
 					{
-						String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"' where ID = '"+ID+"'";
+						String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"',BaseRentFromPW = '"+baseRentFromPW+"' where ID = '"+ID+"'";
 						DataBase.updateTable(query);
 						continue;
 					}
@@ -83,7 +85,7 @@ public class RunnerClass
 					try
 					{
 						System.out.println("Base Rent Updated");
-					String query = "Update Automation.BaseRentUpdate set Automation_Status='Completed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"' where ID = '"+ID+"'";
+					String query = "Update Automation.BaseRentUpdate set Automation_Status='Completed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"',BaseRentFromPW = '"+baseRentFromPW+"' where ID = '"+ID+"'";
 					DataBase.updateTable(query);
 					continue;
 					}

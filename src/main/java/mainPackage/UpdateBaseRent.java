@@ -20,7 +20,10 @@ public class UpdateBaseRent
 		RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
         RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
         RunnerClass.driver.findElement(Locators.summaryEditButton).click();
-        
+        Thread.sleep(2000);
+        String BaseRentFieldValueFromPW = RunnerClass.driver.findElement(Locators.BaseRentFieldinPW).getAttribute("value").replace("$", "");
+        RunnerClass.baseRentFromPW = BaseRentFieldValueFromPW;
+        System.out.println("Base rent in PW field -" + RunnerClass.baseRentFromPW);
         Thread.sleep(2000);
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
