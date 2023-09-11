@@ -84,7 +84,7 @@ public class RunnerClass
 					//Update table for successful lease
 					try
 					{
-						System.out.println("Base Rent Updated");
+					System.out.println("Base Rent Updated");
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Completed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"',BaseRentFromPW = '"+baseRentFromPW+"' where ID = '"+ID+"'";
 					DataBase.updateTable(query);
 					continue;

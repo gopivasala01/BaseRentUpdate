@@ -6,6 +6,7 @@ import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
 
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -23,12 +24,12 @@ public class UpdateBaseRent
         Thread.sleep(2000);
         String BaseRentFieldValueFromPW = RunnerClass.driver.findElement(Locators.BaseRentFieldinPW).getAttribute("value").replace("$", "");
         RunnerClass.baseRentFromPW = BaseRentFieldValueFromPW;
-        System.out.println("Base rent in PW field -" + RunnerClass.baseRentFromPW);
+        System.out.println("Base rent in PW field - " + RunnerClass.baseRentFromPW);
         Thread.sleep(2000);
 		RunnerClass.js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
 		RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.newAutoCharge)).build().perform();
 		
-		List<WebElement> autoChargeCodes = RunnerClass.driver.findElements(Locators.autoCharge_List);
+ 		List<WebElement> autoChargeCodes = RunnerClass.driver.findElements(Locators.autoCharge_List);
 		List<WebElement> autoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_Amount);
 		List<WebElement> autoChargeStartDates = RunnerClass.driver.findElements(Locators.autoCharge_StartDate);
 		List<WebElement> autoChargeEndDates = RunnerClass.driver.findElements(Locators.autoCharge_EndDate);
@@ -80,8 +81,12 @@ public class UpdateBaseRent
 		{
 			RunnerClass.baseRentAmount =String.valueOf(rentCalculated);
 			if(RunnerClass.baseRentAmount.endsWith(".0"))
+			{
 				RunnerClass.baseRentAmount= RunnerClass.baseRentAmount+"0";
-			System.out.println(RunnerClass.baseRentAmount+" is the Base Rent");
+				System.out.println(RunnerClass.baseRentAmount+" is the Base Rent");
+				//updateBaseRent();
+			}
+			
 		}
 		if(baseRentAvailable == false) 
 		{
@@ -106,15 +111,58 @@ public class UpdateBaseRent
 		try
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRent)).build().perform();
-			if(RunnerClass.driver.findElement(Locators.baseRent).getText().replace("$", "").replace(",", "").split(".")[0].equals(RunnerClass.baseRentAmount.split(".")[0]))
-			{
-				RunnerClass.failedReason = "Already exists";
-				return true;
+			if(RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote(".")).length != 0){
+				if( RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote("."))[0].equals(RunnerClass.baseRentAmount.split(Pattern.quote("."))[0]))
+				{
+					RunnerClass.failedReason = "Already exists";
+					return true;
+				}
+				else
+				{
+					RunnerClass.driver.findElement(Locators.baseRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+				    RunnerClass.driver.findElement(Locators.baseRent).sendKeys(RunnerClass.baseRentAmount);  
+				    String UpdatedBaseRentFieldValue = RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "");
+			        //RunnerClass.baseRentFromPW = UpdatedBaseRentFieldValue;
+				    System.out.println("Updated Base rent in PW field - " + UpdatedBaseRentFieldValue);
+				    	 if(AppConfig.saveButtonOnAndOff==false)
+				 		{
+				 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
+				 			 RunnerClass.driver.findElement(Locators.cancelLease).click();
+				 			 return true;
+				 		}
+				 	    else 
+				 	    {
+				 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+				 			 RunnerClass.driver.findElement(Locators.saveLease).click();
+				 			 Thread.sleep(2000);
+				 			 try
+				 			 {
+				 				 RunnerClass.driver.switchTo().alert().accept();
+				 			 }
+				 			 catch(Exception e) {}
+				 			 try
+				 			 {
+				 			 if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
+				 			 {
+				 				 RunnerClass.failedReason = RunnerClass.failedReason + ", Base Rent could not be saved";
+				 				 return false;
+				 			 }
+				 			 }
+				 			 catch(Exception e) {}
+				 			 return true;
+				 	    }
+				    	
+				}
+				
 			}
-			else
-			{
+	
+			else {
+				
 				RunnerClass.driver.findElement(Locators.baseRent).sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 			    RunnerClass.driver.findElement(Locators.baseRent).sendKeys(RunnerClass.baseRentAmount);
+			    String UpdatedBaseRentFieldValue = RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "");
+		        //RunnerClass.baseRentFromPW = UpdatedBaseRentFieldValue;
+		       System.out.println("Updated Base rent in PW field - " + UpdatedBaseRentFieldValue);
 			    	 if(AppConfig.saveButtonOnAndOff==false)
 			 		{
 			 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.cancelLease)).build().perform();
@@ -141,8 +189,9 @@ public class UpdateBaseRent
 			 			 }
 			 			 catch(Exception e) {}
 			 			 return true;
-			 	    }
 			}
+ 			
+			}	
 		}
 		catch(Exception e)
 		{

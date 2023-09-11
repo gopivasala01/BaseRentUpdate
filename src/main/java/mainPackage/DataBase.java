@@ -36,8 +36,21 @@ public class DataBase
 		            	String 	ID =  rs.getObject(1).toString();
 		            	String 	company =  (String) rs.getObject(2);
 		                String  leaseEntityID = rs.getObject(3).toString();
-		                String dateDifference =  rs.getObject(4).toString();
-		                String moveInDate =  rs.getObject(5).toString(); 
+		                String dateDifference = null;
+		                if(rs.getObject(4) == null) {
+		                	dateDifference = "";
+		                }
+		                else {
+		                	dateDifference = rs.getObject(4).toString();
+		                }
+		                
+		                String moveInDate = null;
+		                if(rs.getObject(5) == null) {
+		                	moveInDate = "";
+		                }else {
+		                	moveInDate = rs.getObject(5).toString(); 
+		                }
+		               
 		    			//ID
 		                try 
 		                {
