@@ -179,6 +179,33 @@ public class PropertyWare
 				catch(Exception e) {}
 			
 	}
+	public static void evictionPopUp()
+	{
+		//Pop up after clicking lease name
+				try
+				{
+					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+			        try
+			        {
+					if(RunnerClass.driver.findElement(Locators.evictionPopUp).isDisplayed())
+					{
+						try
+						{
+							if(RunnerClass.driver.findElement(Locators.evictionNotAcceptPaymentCheckbox).isSelected()&& RunnerClass.driver.findElement(Locators.evictionNotAllowportalCheckbox).isSelected()) {
+								RunnerClass.driver.findElement(Locators.saveEvictionPopUp).click();
+							}
+						}
+						catch(Exception e) {}
+					}
+			        }
+			        catch(Exception e) {}
+					RunnerClass.driver.manage().timeouts().implicitlyWait(5,TimeUnit.SECONDS);
+			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(5));
+				}
+				catch(Exception e) {}
+			
+	}
 	
 	public static boolean checkIfBuildingIsDeactivated()
 	{

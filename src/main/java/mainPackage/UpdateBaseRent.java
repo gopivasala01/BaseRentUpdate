@@ -51,6 +51,10 @@ public class UpdateBaseRent
 		
 		String dateCalculated=null;
 		boolean baseRentAvailable = false;
+		if(RunnerClass.dateDifference.equals("")){
+			RunnerClass.failedReason = "No Move In date";
+			return false;
+		}
 		int days = Integer.parseInt(RunnerClass.dateDifference);
 		if(days<=62)
 			dateCalculated = CommonMethods.getCalculatedDate(RunnerClass.moveInDate);
@@ -134,17 +138,21 @@ public class UpdateBaseRent
 				 	    {
 				 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 				 			 RunnerClass.driver.findElement(Locators.saveLease).click();
+				 			 if(RunnerClass.driver.findElement(Locators.evictionPopUp).isDisplayed()) {
+				 				PropertyWare.evictionPopUp();
+				 			 }
 				 			 Thread.sleep(2000);
 				 			 try
 				 			 {
 				 				 RunnerClass.driver.switchTo().alert().accept();
+				 				RunnerClass.failedReason = RunnerClass.failedReason + "";
 				 			 }
 				 			 catch(Exception e) {}
 				 			 try
 				 			 {
 				 			 if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
 				 			 {
-				 				 RunnerClass.failedReason = RunnerClass.failedReason + ", Base Rent could not be saved";
+				 				 RunnerClass.failedReason = RunnerClass.failedReason + "Base Rent could not be saved";
 				 				 return false;
 				 			 }
 				 			 }
@@ -173,17 +181,22 @@ public class UpdateBaseRent
 			 	    {
 			 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			 			 RunnerClass.driver.findElement(Locators.saveLease).click();
+			 			 if(RunnerClass.driver.findElement(Locators.evictionPopUp).isDisplayed()) {
+			 				PropertyWare.evictionPopUp();
+			 			 }
+			 			 
 			 			 Thread.sleep(2000);
 			 			 try
 			 			 {
 			 				 RunnerClass.driver.switchTo().alert().accept();
+			 				 RunnerClass.failedReason = RunnerClass.failedReason + "";
 			 			 }
 			 			 catch(Exception e) {}
 			 			 try
 			 			 {
 			 			 if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
 			 			 {
-			 				 RunnerClass.failedReason = RunnerClass.failedReason + ", Base Rent could not be saved";
+			 				 RunnerClass.failedReason = RunnerClass.failedReason + "Base Rent could not be saved";
 			 				 return false;
 			 			 }
 			 			 }
@@ -195,7 +208,7 @@ public class UpdateBaseRent
 		}
 		catch(Exception e)
 		{
-			RunnerClass.failedReason = RunnerClass.failedReason + ", Base Rent could not be saved";
+			RunnerClass.failedReason = RunnerClass.failedReason + "Base Rent could not be saved";
 			return false;
 		}
 	}

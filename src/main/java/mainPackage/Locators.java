@@ -21,6 +21,10 @@ public class Locators
     public static By scheduledMaintanancePopUpOkButton = By.id("alertDoNotShow");
     public static By popupClose = By.xpath("//*[@id='editStickyBtnDiv']/input[2]");
     public static By permissionDenied = By.xpath("//*[contains(text(),'Permission Denied')]");
+    public static By evictionPopUp = By.xpath("//div[@id='evictionRestrictionsForm']");
+    public static By evictionNotAcceptPaymentCheckbox = By.xpath("//input[@id='notAcceptPayments']");
+    public static By evictionNotAllowportalCheckbox = By.xpath("//input[@id='notAllowPortalAccess']");
+    public static By saveEvictionPopUp = By.xpath("//div[@classname='primaryButtons']//input[@value='Save']");
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By BaseRentFieldinPW = By.xpath("//input[@name='entity.baseRentAsString']");

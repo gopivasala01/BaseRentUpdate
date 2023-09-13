@@ -79,7 +79,11 @@ public class RunnerClass
 						continue;
 					}
 					
-					UpdateBaseRent.updateBaseRent();
+					if(UpdateBaseRent.updateBaseRent() == false) {
+						String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"+failedReason+"',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"+baseRentAmount+"',BaseRentFromPW = '"+baseRentFromPW+"' where ID = '"+ID+"'";
+						DataBase.updateTable(query);
+						continue;
+					};
 					
 					//Update table for successful lease
 					try
