@@ -12,6 +12,7 @@ public class Locators
 	public static By marketDropdown = By.id("switchAccountSelect");
 	public static By buildingTitle = By.id("summaryTitleBuilding");
 	public static By buildingDeactivatedMessage = By.xpath("//*[text()='This Building has been deactivated']");
+	public static By leaseStatusInApplication = By.xpath("//div[@class='customLeaseStatus']");
 	public static By leasesTab = By.xpath("//*[@class='tabbedSection']/a[4]");	
     public static By leasesTab2 = By.xpath("(//a[text()='Leases'])[2]");
     public static By tenantContact = By.xpath("//*[@id='buildingLeaseList']/tbody/tr/td[2]/a");
@@ -25,6 +26,11 @@ public class Locators
     public static By evictionNotAcceptPaymentCheckbox = By.xpath("//input[@id='notAcceptPayments']");
     public static By evictionNotAllowportalCheckbox = By.xpath("//input[@id='notAllowPortalAccess']");
     public static By saveEvictionPopUp = By.xpath("//div[@classname='primaryButtons']//input[@value='Save']");
+    
+    public static By scheduleMaintananceIFrame = By.xpath("//iframe[@srcdoc='<meta name=\"referrer\" content=\"origin\" />']");
+    public static By scheduleMaintanancePopUp2 = By.xpath("//section[@role='dialog']");
+    public static By maintananceCloseButton = By.xpath("//a[@aria-label='Close modal']");
+    
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By BaseRentFieldinPW = By.xpath("//input[@name='entity.baseRentAsString']");
@@ -43,6 +49,8 @@ public class Locators
     public static By turnQCCompletedDate = By.xpath("//*[text()='Turn QC Completed Date']/following::input[1]");
     public static By codeBoxActive = By.xpath("//*[text()='Codebox Active']/following::input[1]");
     public static By lastVacantVisit = By.xpath("//*[text()='Last Vacant Visit']/following::input[1]");
+    
+    public static By status = By.xpath("//*[@id='infoTable']/tbody/tr[6]/td[2]");
     
     public static By saveLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[1]");
     public static By cancelLease = By.xpath("(//*[@class='primaryButtons'])[2]/input[2]");

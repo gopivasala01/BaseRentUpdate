@@ -103,8 +103,21 @@ public class PropertyWare
 	        }
 	        PropertyWare.intermittentPopUp();
 	        if(PropertyWare.checkIfBuildingIsDeactivated()==true)
+	        {
 	        	return false;
-	        boolean portfolioCheck = false;
+	        }
+	        String status = RunnerClass.driver.findElement(Locators.status).getText();
+	        if(status.equalsIgnoreCase("ACTIVE") || status.equalsIgnoreCase("Active - Month to Month")){
+	        	System.out.println("Status = " + status);
+	        	//RunnerClass.failedReason = "Lease is Active";
+	        	return true;
+	        }
+	        else {
+	        	System.out.println("Status = " + status);
+	        	RunnerClass.failedReason = "Lease is not Active";
+	        	return false;
+	        }
+	      /*  boolean portfolioCheck = false;
 	        try
 	        {
 	        	String portfolioText = RunnerClass.driver.findElement(Locators.portfolioText).getText();
@@ -124,9 +137,8 @@ public class PropertyWare
 	        catch(Exception e)
 	        {
 	        	
-	        }
+	        }*/
 	        
-	        return true;
 	        /*
 	        String buildingAddress = RunnerClass.driver.findElement(Locators.buildingTitle).getText();
 	        if(buildingAddress.toLowerCase().contains(RunnerClass.address.substring(0,RunnerClass.address.lastIndexOf(" ")).toLowerCase()))
@@ -151,6 +163,16 @@ public class PropertyWare
 				{
 					RunnerClass.driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
 			        RunnerClass.wait = new WebDriverWait(RunnerClass.driver, Duration.ofSeconds(1));
+			        try {
+			        	Thread.sleep(1000);
+			        	RunnerClass.driver.switchTo().frame(RunnerClass.driver.findElement(Locators.scheduleMaintananceIFrame));
+			        	if(RunnerClass.driver.findElement(Locators.scheduleMaintanancePopUp2).isDisplayed()) {
+			        		Thread.sleep(1000);
+			        		RunnerClass.driver.findElement(Locators.maintananceCloseButton).click();
+			        	}
+			        	RunnerClass.driver.switchTo().defaultContent();
+			        }
+			        catch(Exception e) {}
 			        try
 			        {
 					if(RunnerClass.driver.findElement(Locators.popUpAfterClickingLeaseName).isDisplayed())
