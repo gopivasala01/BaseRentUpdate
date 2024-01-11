@@ -116,7 +116,7 @@ public class UpdateBaseRent
 			if(RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote(".")).length != 0){
 				if( RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote("."))[0].equals(RunnerClass.baseRentAmount.split(Pattern.quote("."))[0]))
 				{
-					RunnerClass.failedReason = "Already exists";
+					RunnerClass.failedReason = "Base Rent Already Exists";
 					return true;
 				}
 				else
