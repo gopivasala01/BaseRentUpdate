@@ -83,7 +83,6 @@ public class RunnerClass {
 					DataBase.updateTable(query);
 					continue;
 				}
-				;
 
 				// Update table for successful lease
 				try {
