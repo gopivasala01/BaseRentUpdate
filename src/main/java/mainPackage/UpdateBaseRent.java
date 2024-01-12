@@ -134,18 +134,17 @@ public class UpdateBaseRent
 				 		}
 				 	    else 
 				 	    {
-				 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
+				 			 RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 				 			 RunnerClass.driver.findElement(Locators.saveLease).click();
-				 			 if(RunnerClass.driver.findElement(Locators.evictionPopUp).isDisplayed()) {
-				 				PropertyWare.evictionPopUp();
-				 			 }
+				 			 PropertyWare.evictionPopUp();
 				 			 Thread.sleep(2000);
 				 			 try
 				 			 {
-				 				 RunnerClass.driver.switchTo().alert().accept();
+				 				RunnerClass.driver.switchTo().alert().accept();
 				 				RunnerClass.failedReason = RunnerClass.failedReason + "";
 				 			 }
 				 			 catch(Exception e) {}
+				 			 
 				 			 try
 				 			 {
 				 			 if(RunnerClass.driver.findElement(Locators.saveLease).isDisplayed())
@@ -179,10 +178,7 @@ public class UpdateBaseRent
 			 	    {
 			 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.saveLease)).build().perform();
 			 			 RunnerClass.driver.findElement(Locators.saveLease).click();
-			 			 if(RunnerClass.driver.findElement(Locators.evictionPopUp).isDisplayed()) {
-			 				PropertyWare.evictionPopUp();
-			 			 }
-			 			 
+			 			 PropertyWare.evictionPopUp();
 			 			 Thread.sleep(2000);
 			 			 try
 			 			 {
