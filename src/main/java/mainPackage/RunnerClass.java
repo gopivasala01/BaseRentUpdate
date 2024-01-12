@@ -46,6 +46,13 @@ public class RunnerClass {
 		// Loop over leases
 		for (int i = 0; i < pendingLeases.length; i++) {
 			try {
+				try {
+					String expiredURL = RunnerClass.driver.getCurrentUrl();
+					if(expiredURL.contains("https://app.propertyware.com/pw/expired.jsp") || expiredURL.equalsIgnoreCase("https://app.propertyware.com/pw/expired.jsp?cookie") || expiredURL.contains(AppConfig.URL)) {
+						PropertyWare.signIn();
+					}
+				}
+				catch(Exception e) {}
 				ID = pendingLeases[i][0];
 				company = pendingLeases[i][1];
 				leaseEntityID = pendingLeases[i][2];
