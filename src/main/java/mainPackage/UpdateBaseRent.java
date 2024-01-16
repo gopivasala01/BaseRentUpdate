@@ -65,6 +65,7 @@ public class UpdateBaseRent
 			String autoChargeCode = autoChargeCodes.get(i).getText().split("-")[0].trim();
 			if(AppConfig.getMonthlyRentChargeCode(RunnerClass.company).contains(autoChargeCode))
 			{
+				;
 				String autoChargeStartDate = autoChargeStartDates.get(i).getText();
 				String autoChargeEndDate = autoChargeEndDates.get(i).getText();
 				String autoChargeAmount = autoChargeAmounts.get(i).getText();
@@ -114,7 +115,7 @@ public class UpdateBaseRent
 		{
 			RunnerClass.actions.moveToElement(RunnerClass.driver.findElement(Locators.baseRent)).build().perform();
 			if(RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote(".")).length != 0){
-				if( RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote("."))[0].equals(RunnerClass.baseRentAmount.split(Pattern.quote("."))[0]))
+				if( RunnerClass.driver.findElement(Locators.baseRent).getAttribute("value").replace("$", "").replace(",", "").split(Pattern.quote("."))[0].equals((RunnerClass.baseRentAmount).split(Pattern.quote("."))[0]))
 				{
 					RunnerClass.failedReason = "Base Rent Already Exists";
 					return true;
