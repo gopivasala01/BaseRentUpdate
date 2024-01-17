@@ -85,7 +85,7 @@ public class PropertyWare
 	        PropertyWare.intermittentPopUp();
 	        //if(PropertyWare.checkIfBuildingIsDeactivated()==true)
 	        	//return false;
-	        if(RunnerClass.previousRecordCompany==null||!RunnerClass.previousRecordCompany.equals(RunnerClass.company)||RunnerClass.previousRecordCompany.equals(""))
+	        if(RunnerClass.previousRecordCompany==null||!RunnerClass.previousRecordCompany.equals(RunnerClass.company)||RunnerClass.previousRecordCompany.equals("") || RunnerClass.loggedOut == true)
 	        {
 	        RunnerClass.driver.findElement(Locators.marketDropdown).click();
 	        String marketName = "HomeRiver Group - "+RunnerClass.company;

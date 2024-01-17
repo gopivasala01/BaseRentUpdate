@@ -33,6 +33,7 @@ public class RunnerClass {
 	public static String baseRentAmount = "";
 	public static String baseRentFromPW = "";
 	public static String previousRecordCompany;
+	public static boolean loggedOut = false;
 
 	public static void main(String args[]) {
 		// Get Pending Leases
@@ -49,6 +50,7 @@ public class RunnerClass {
 				try {
 					String expiredURL = RunnerClass.driver.getCurrentUrl();
 					if(expiredURL.contains("https://app.propertyware.com/pw/expired.jsp") || expiredURL.equalsIgnoreCase("https://app.propertyware.com/pw/expired.jsp?cookie") || expiredURL.contains(AppConfig.URL)) {
+						loggedOut = true;
 						RunnerClass.driver.navigate().to(AppConfig.URL);
 						RunnerClass.driver.findElement(Locators.userName).sendKeys(AppConfig.username); 
 					    RunnerClass.driver.findElement(Locators.password).sendKeys(AppConfig.password);
@@ -71,6 +73,7 @@ public class RunnerClass {
 				baseRentAmount = "";
 				baseRentFromPW = "";
 				failedReason = "";
+				loggedOut = false;
 				System.out.println("Lease --" + leaseEntityID + "-- " + (i + 1));
 				if (PropertyWare.selectLease() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
