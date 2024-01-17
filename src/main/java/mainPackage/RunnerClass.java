@@ -73,7 +73,6 @@ public class RunnerClass {
 				baseRentAmount = "";
 				baseRentFromPW = "";
 				failedReason = "";
-				loggedOut = false;
 				System.out.println("Lease --" + leaseEntityID + "-- " + (i + 1));
 				if (PropertyWare.selectLease() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
@@ -82,6 +81,7 @@ public class RunnerClass {
 					previousRecordCompany = company;
 					continue;
 				}
+				loggedOut = false;
 				previousRecordCompany = company;
 				if (UpdateBaseRent.getBaseRentAmount() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
