@@ -31,6 +31,7 @@ public class Locators
     public static By scheduleMaintanancePopUp2 = By.xpath("//section[@role='dialog']");
     public static By maintananceCloseButton = By.xpath("//a[@aria-label='Close modal']");
     
+    public static By portfolioName = By.xpath("//div[@class='summaryPanelSection3']/a[1]");
     
     public static By summaryEditButton = By.xpath("//*[@value='Edit']");
     public static By BaseRentFieldinPW = By.xpath("//input[@name='entity.baseRentAsString']");

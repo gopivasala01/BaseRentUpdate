@@ -33,6 +33,7 @@ public class RunnerClass {
 	public static String baseRentAmount = "";
 	public static String baseRentFromPW = "";
 	public static String previousRecordCompany;
+	public static String portfolioName = "";
 	public static boolean loggedOut = false;
 
 	public static void main(String args[]) {
@@ -73,6 +74,7 @@ public class RunnerClass {
 				baseRentAmount = "";
 				baseRentFromPW = "";
 				failedReason = "";
+				portfolioName = "";
 				System.out.println("Lease --" + leaseEntityID + "-- " + (i + 1));
 				if (PropertyWare.selectLease() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
@@ -86,7 +88,7 @@ public class RunnerClass {
 				if (UpdateBaseRent.getBaseRentAmount() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
 							+ failedReason + "',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"
-							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "' where ID = '" + ID + "'";
+							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "',PortfolioName ='"+ portfolioName +"' where ID = '" + ID + "'";
 					DataBase.updateTable(query);
 					continue;
 				}
@@ -94,7 +96,7 @@ public class RunnerClass {
 				if (UpdateBaseRent.updateBaseRent() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"
 							+ failedReason + "',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"
-							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "' where ID = '" + ID + "'";
+							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "',PortfolioName ='"+ portfolioName +"' where ID = '" + ID + "'";
 					DataBase.updateTable(query);
 					continue;
 				}
@@ -103,7 +105,7 @@ public class RunnerClass {
 				try {
 					System.out.println("Base Rent Updated");
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Completed',Automation_Notes='"+ failedReason + "',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"
-							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "' where ID = '" + ID + "'";
+							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "',PortfolioName ='"+ portfolioName +"' where ID = '" + ID + "'";
 					DataBase.updateTable(query);
 					continue;
 				} catch (Exception e) {

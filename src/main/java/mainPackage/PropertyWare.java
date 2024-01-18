@@ -106,6 +106,7 @@ public class PropertyWare
 	        {
 	        	return false;
 	        }
+	        RunnerClass.portfolioName = RunnerClass.driver.findElement(Locators.portfolioName).getText();
 	        String status = RunnerClass.driver.findElement(Locators.status).getText();
 	        if(status.equalsIgnoreCase("ACTIVE") || status.equalsIgnoreCase("Active - Month to Month") || status.equalsIgnoreCase("Active - TTO") || status.equalsIgnoreCase("Active - Notice Given")){
 	        	System.out.println("Status = " + status);
