@@ -29,7 +29,7 @@ public class AppConfig
 	   
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 	   
-	   public static String pendingLeasesQuery = "Select ID, Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where company ='Georgia' and Status in ('Active','Active - Notice Given','Active - TTO','Active - Month to Month') ";//and LeaseEntityID = '3569451017'";//Company ='Alabama' and convert(date, Automation_Completiondate )<> '2023-07-05'";
+	   public static String pendingLeasesQuery = "Select ID, Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where company ='San Antonio' and Status in ('Active','Active - Notice Given','Active - TTO','Active - Month to Month') ";//and LeaseEntityID = '3569451017'";//Company ='Alabama' and convert(date, Automation_Completiondate )<> '2023-07-05'";
 	   
 	   public static String failedLeasesQuery = "Select Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where  Company='Alabama' and Status ='Failed'";
 	   
@@ -62,7 +62,7 @@ public class AppConfig
 		   case "North Carolina":
 			   return "40010 - Rent Income";
 		   case "Alabama":
-			   return "40010,40011,40012, 40013,40014,40015,40016,40017,40018,40019,40020,40021,40022,40023,40024,40025,40026,40027,40028,40029,40051,40061,40200";
+			   return "40010,40011,40012, 40013,40014,40015,40016,40017,40018,40019,40020,40021,40022,40023,40024,40025,40026,40027,40028,40029,40051,40061";
 		   case "Arkansas":
 			   return "40010 - Rent Income";
 		   case "Dallas/Fort Worth":
@@ -107,6 +107,44 @@ public class AppConfig
 		   }
 		   return "";
 	   }
+	   
+	   public static String getSubsidizedMonthlyRentChargeCode(String company) {
+		    switch(company) {
+		        case "Austin":
+		        case "California":
+		        case "California PFW":
+		        case "Chattanooga":
+		        case "Chicago PFW":
+		        case "Colorado Springs":
+		        case "Kansas City":
+		        case "Houston":
+		        case "Maine":
+		        case "Savannah":
+		        case "North Carolina":
+		        case "Arkansas":
+		        case "Dallas/Fort Worth":
+		        case "Indiana":
+		        case "Little Rock":
+		        case "San Antonio":
+		        case "Tulsa":
+		        case "Georgia":
+		        case "OKC":
+		        case "South Carolina":
+		        case "Florida":
+		        case "Tennessee":
+		        case "New Mexico":
+		        case "Ohio":
+		        case "Pennsylvania":
+		        case "Lake Havasu":
+		        case "Saint Louis":
+		        case "Maryland":
+		        case "Virginia":
+		        case "Boise":
+		        case "Idaho Falls":
+		            return "40200 - Subsidized Rent";
+		    }
+		    return "";
+		}
 	   
 
 }

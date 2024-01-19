@@ -49,6 +49,7 @@ public class UpdateBaseRent
 		
 		String dateCalculated=null;
 		boolean baseRentAvailable = false;
+		boolean subsidizedRentAvailable = false;
 		if(RunnerClass.dateDifference.equals("")){
 			RunnerClass.failedReason = "No Move In date";
 			return false;
@@ -60,12 +61,26 @@ public class UpdateBaseRent
 			dateCalculated =CommonMethods.getCurrentDate();  
 		System.out.println(dateCalculated.toString());
 		double rentCalculated =0.00d;
+		double subsidizedRentCalculated =0.00d;
 		for(int i=0;i<autoChargeCodes.size();i++)
 		{
 			String autoChargeCode = autoChargeCodes.get(i).getText().split("-")[0].trim();
+			if(AppConfig.getSubsidizedMonthlyRentChargeCode(RunnerClass.company).contains(autoChargeCode)) {
+				String subsidizedStartDate = autoChargeStartDates.get(i).getText();
+				String subsidizedChargeEndDate = autoChargeEndDates.get(i).getText();
+				String subsidizedChargeAmount = autoChargeAmounts.get(i).getText();
+				if(CommonMethods.compareDates(subsidizedStartDate,dateCalculated)==true&&((subsidizedChargeEndDate.trim().equals(""))||CommonMethods.compareDates(dateCalculated, subsidizedChargeEndDate))&&!subsidizedChargeAmount.contains("-$")) {
+					String subsidizedRent =  autoChargeAmounts.get(i).getText();
+					double d =Double.parseDouble(subsidizedRent.substring(1, subsidizedRent.length()).replace(",", ""));
+					subsidizedRentCalculated = d + subsidizedRentCalculated;
+					
+					subsidizedRentAvailable = true;
+				}
+				
+			}
+			
 			if(AppConfig.getMonthlyRentChargeCode(RunnerClass.company).contains(autoChargeCode))
 			{
-				;
 				String autoChargeStartDate = autoChargeStartDates.get(i).getText();
 				String autoChargeEndDate = autoChargeEndDates.get(i).getText();
 				String autoChargeAmount = autoChargeAmounts.get(i).getText();
@@ -82,13 +97,26 @@ public class UpdateBaseRent
 		}
 		if(baseRentAvailable==true)
 		{
-			RunnerClass.baseRentAmount =String.valueOf(rentCalculated);
-			if(RunnerClass.baseRentAmount.endsWith(".0"))
-			{
-				RunnerClass.baseRentAmount= RunnerClass.baseRentAmount+"0";
-				System.out.println(RunnerClass.baseRentAmount+" is the Base Rent");
-				//updateBaseRent();
+			if(subsidizedRentAvailable == true) {
+				RunnerClass.baseRentAmount =String.valueOf(rentCalculated+subsidizedRentCalculated);
+				if(RunnerClass.baseRentAmount.endsWith(".0"))
+				{
+					RunnerClass.baseRentAmount= RunnerClass.baseRentAmount+"0";
+					System.out.println(RunnerClass.baseRentAmount+" is the Base Rent");
+					//updateBaseRent();
+				}
+				
 			}
+			else {
+				RunnerClass.baseRentAmount =String.valueOf(rentCalculated);
+				if(RunnerClass.baseRentAmount.endsWith(".0"))
+				{
+					RunnerClass.baseRentAmount= RunnerClass.baseRentAmount+"0";
+					System.out.println(RunnerClass.baseRentAmount+" is the Base Rent");
+					//updateBaseRent();
+				}
+			}
+			
 			
 		}
 		if(baseRentAvailable == false) 
