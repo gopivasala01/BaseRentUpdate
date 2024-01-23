@@ -103,6 +103,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Idaho Falls":
 			   return "40010 - Rent Income";
+		   case "Utah":
+			   return "40010 - Rent Income";
 			      
 		   }
 		   return "";
@@ -141,6 +143,7 @@ public class AppConfig
 		        case "Virginia":
 		        case "Boise":
 		        case "Idaho Falls":
+		        case "Utah":
 		            return "40200 - Subsidized Rent";
 		    }
 		    return "";
