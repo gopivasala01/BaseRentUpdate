@@ -29,7 +29,7 @@ public class AppConfig
 	   
 	  // public static String leaseFetchQuery  = "Select Company, Building,leaseName from Automation.InitialRentsUpdate where Status ='Pending' and Company ='Georgia'";
 	   
-	   public static String pendingLeasesQuery = "Select ID, Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where company ='Utah' and Status in ('Active','Active - Notice Given','Active - TTO','Active - Month to Month')";//and LeaseEntityID = '3569451017'";//Company ='Alabama' and convert(date, Automation_Completiondate )<> '2023-07-05'";
+	   public static String pendingLeasesQuery = "Select ID, Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where company ='Montana' and Status in ('Active','Active - Notice Given','Active - TTO','Active - Month to Month') and Automation_Status is null";//and LeaseEntityID = '3569451017'";//Company ='Alabama' and convert(date, Automation_Completiondate )<> '2023-07-05'";
 	   
 	   public static String failedLeasesQuery = "Select Company, LeaseEntityID,DateDiff(Day,MoveInDate,Getdate()) as datedifference,moveInDate from Automation.BaseRentUpdate where  Company='Alabama' and Status ='Failed'";
 	   
@@ -105,6 +105,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Utah":
 			   return "40010 - Rent Income";
+		   case "Montana":
+			   return "40010 - Rent Income";
 			      
 		   }
 		   return "";
@@ -144,6 +146,7 @@ public class AppConfig
 		        case "Boise":
 		        case "Idaho Falls":
 		        case "Utah":
+		        case "Montana":
 		            return "40200 - Subsidized Rent";
 		    }
 		    return "";
