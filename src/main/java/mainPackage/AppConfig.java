@@ -47,6 +47,8 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
+		   case "Chicago":
+			   return "40010 - Rent Income";
 		   case "Chicago PFW":
 			   return "40010 - Rent Income";
 		   case "Colorado Springs":
@@ -120,6 +122,7 @@ public class AppConfig
 		        case "California":
 		        case "California PFW":
 		        case "Chattanooga":
+		        case "Chicago":
 		        case "Chicago PFW":
 		        case "Colorado Springs":
 		        case "Kansas City":
