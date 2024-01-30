@@ -75,6 +75,12 @@ public class RunnerClass {
 				baseRentFromPW = "";
 				failedReason = "";
 				portfolioName = "";
+				if(company.equalsIgnoreCase("Chicago PFW")) {
+					   company = "Chicago";
+				  }
+				if(company.equalsIgnoreCase("California PFW")) {
+					   company = "California pfw";
+				  }
 				System.out.println("Lease --" + leaseEntityID + "-- " + (i + 1));
 				if (PropertyWare.selectLease() == false) {
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Failed',Automation_Notes='"

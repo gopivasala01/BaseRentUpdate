@@ -37,19 +37,18 @@ public class AppConfig
 	   
 	   public static String getMonthlyRentChargeCode(String company)
 	   {
+		   
 		   switch(company)
 		   {
 		   case "Austin":
 			   return "40010 - Rent Income";
 		   case "California":
 			   return "40010 - Rent Income";
-		   case "California PFW":
+		   case "California pfw":
 			   return "40010 - Rent Income";
 		   case "Chattanooga":
 			   return "40010 - Rent Income";
 		   case "Chicago":
-			   return "40010 - Rent Income";
-		   case "Chicago PFW":
 			   return "40010 - Rent Income";
 		   case "Colorado Springs":
 			   return "40010 - Rent Income";
@@ -111,6 +110,18 @@ public class AppConfig
 			   return "40010 - Rent Income";
 		   case "Spokane":
 			   return "40010 - Rent Income";
+		   case "Columbia - St Louis":
+			   return "40010 - Rent Income";
+		   case "Arizona":
+			   return "40010 - Rent Income";
+		   case "New Jersey":
+			   return "40010 - Rent Income";
+		   case "Hawaii":
+			   return "40010 - Rent Income";
+		   case "Washington DC":
+			   return "40010 - Rent Income";
+		   case "Delaware":
+			   return "40010 - Rent Income";
 			      
 		   }
 		   return "";
@@ -120,13 +131,14 @@ public class AppConfig
 		    switch(company) {
 		        case "Austin":
 		        case "California":
-		        case "California PFW":
+		        case "California pfw":
 		        case "Chattanooga":
 		        case "Chicago":
-		        case "Chicago PFW":
 		        case "Colorado Springs":
+		        case "Delaware":
 		        case "Kansas City":
 		        case "Houston":
+		        case "Hawaii":
 		        case "Maine":
 		        case "Savannah":
 		        case "North Carolina":
@@ -153,6 +165,11 @@ public class AppConfig
 		        case "Utah":
 		        case "Montana":
 		        case "Spokane":
+		        case "Columbia - St Louis":
+		        case "Arizona":
+		        case "New Jersey":
+		        case "Alabama":
+		        case "Washington DC":
 		            return "40200 - Subsidized Rent";
 		    }
 		    return "";
