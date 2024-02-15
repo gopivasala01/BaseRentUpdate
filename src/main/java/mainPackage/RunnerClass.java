@@ -111,7 +111,7 @@ public class RunnerClass {
 				try {
 					System.out.println("Base Rent Updated");
 					String query = "Update Automation.BaseRentUpdate set Automation_Status='Completed',Automation_Notes='"+ failedReason + "',Automation_CompletionDate =getdate(),BaseRentFromAutoCharges='"
-							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "',PortfolioName ='"+ portfolioName +"' where ID = '" + ID + "'";
+							+ baseRentAmount + "',BaseRentFromPW = '" + baseRentFromPW + "',PortfolioName ='"+ portfolioName.replace("'", "''") +"' where ID = '" + ID + "'";
 					DataBase.updateTable(query);
 					continue;
 				} catch (Exception e) {
