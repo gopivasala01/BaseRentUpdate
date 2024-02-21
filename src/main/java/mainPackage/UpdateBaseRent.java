@@ -31,6 +31,7 @@ public class UpdateBaseRent
 		List<WebElement> autoChargeAmounts = RunnerClass.driver.findElements(Locators.autoCharge_Amount);
 		List<WebElement> autoChargeStartDates = RunnerClass.driver.findElements(Locators.autoCharge_StartDate);
 		List<WebElement> autoChargeEndDates = RunnerClass.driver.findElements(Locators.autoCharge_EndDate);
+		List<WebElement> autoChargeDescriptions = RunnerClass.driver.findElements(Locators.autoCharge_description);
 		
 		try
 		{
@@ -73,7 +74,7 @@ public class UpdateBaseRent
 					String subsidizedRent =  autoChargeAmounts.get(i).getText();
 					double d =Double.parseDouble(subsidizedRent.substring(1, subsidizedRent.length()).replace(",", ""));
 					subsidizedRentCalculated = d + subsidizedRentCalculated;
-					
+					subsidizedRentCalculated = Math.round(subsidizedRentCalculated * 100.0) / 100.0;
 					subsidizedRentAvailable = true;
 				}
 				
@@ -84,13 +85,20 @@ public class UpdateBaseRent
 				String autoChargeStartDate = autoChargeStartDates.get(i).getText();
 				String autoChargeEndDate = autoChargeEndDates.get(i).getText();
 				String autoChargeAmount = autoChargeAmounts.get(i).getText();
+				String autoChargeDescription = autoChargeDescriptions.get(i).getText();
 				if(CommonMethods.compareDates(autoChargeStartDate,dateCalculated)==true&&((autoChargeEndDate.trim().equals(""))||CommonMethods.compareDates(dateCalculated, autoChargeEndDate))&&!autoChargeAmount.contains("-$"))
 				{
-					String baseRent =  autoChargeAmounts.get(i).getText();
-					double d =Double.parseDouble(baseRent.substring(1, baseRent.length()).replace(",", ""));
-					rentCalculated = d + rentCalculated;
+					if(autoChargeDescription.toLowerCase().contains("mtm")) {
+						continue;
+					}
+					else {
+						String baseRent =  autoChargeAmounts.get(i).getText();
+						double d =Double.parseDouble(baseRent.substring(1, baseRent.length()).replace(",", ""));
+						rentCalculated = d + rentCalculated;
+						rentCalculated = Math.round(rentCalculated * 100.0) / 100.0;
+						baseRentAvailable = true;
+					}
 					
-					baseRentAvailable = true;
 					//break;
 				}
 			}

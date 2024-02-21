@@ -67,6 +67,7 @@ public class Locators
     public static By autoCharge_StartDate = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[5]");
     public static By autoCharge_EndDate = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[6]");
     public static By autoCharge_Amount = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[3]");
+    public static By autoCharge_description = By.xpath("//*[@id='autoChargesTable']/tbody/tr/td[8]");
     public static By autoCharge_CancelButton = By.xpath("//*[@id='editAutoChargeForm']/descendant::div[4]/input[2]");
     public static By autoCharge_SaveButton = By.xpath("(//*[@class='primaryButtons'])[3]/input[1]");
     
